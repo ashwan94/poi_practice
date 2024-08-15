@@ -15,16 +15,17 @@ public class xlsx_read {
 
     public static void main(String[] args){
         try(FileInputStream file = new FileInputStream(new File(filePath, fileNm)))    {
-            // xlsx 로 Workbook instance 생성
+            // 1. 존재하는 xlsx 로 Workbook instance 생성
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
-            // workbook 의 첫번째 sheet 를 가져옴
-            XSSFSheet sheet = workbook.getSheetAt(0);
+            // 2. workbook 의 첫번째 sheet 를 선택
+            XSSFSheet sheet = workbook.getSheetAt(0); // sheet index 번호는 0부터 시작
 
-            // 모든 row 조회
+            // 3. 모든 row 조회
             for(Row row : sheet){
                 Iterator<Cell> cellIterator = row.cellIterator();
 
+                // 4. row 에 있는 모든 cell(column) 순회
                 while(cellIterator.hasNext()){
                     Cell cell = cellIterator.next();
 
